@@ -79,14 +79,6 @@ export const StudentInfo = ({
     }
   };
 
-  const titleCase = (str: string) => {
-    debugger;
-    return str
-      .split(" ")
-      .map((w) => w[0].toUpperCase() + w.substr(1).toLowerCase())
-      .join(" ");
-  };
-
   return (
     <section className="student-info d-none">
       <span

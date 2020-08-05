@@ -1,39 +1,31 @@
-import React, { useEffect, useState, useCallback } from "react";
-import { connect } from "react-redux";
 import _ from "lodash";
+import React, { useCallback, useEffect, useState } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-// @ts-ignore
-import Workbook from "react-excel-workbook";
-
-import "./Assessment.scss";
-import { StudentList, StudentInfo } from "./AssessmentStudentList";
 import { toast } from "react-toastify";
-import Modal from "../../Modal";
-import PreviewQuestions from "./PreviewQuestions";
-import AddStudentModalWindow, {
-  AddMassScoreModal,
-} from "./AssessmentModalWindow";
-import {
-  facultyAlphabeticalSortFn,
-  departmentAlphabeticalSortFn,
-  matricDescendingSortFn,
-} from "./sortHelperFn";
-import {
-  getFaculty,
-  updateBiodata,
-  loadSingleExam,
-  loadSingleBiodata,
-  loadUpQuestions,
-  loadUpResults,
-  updateExam,
-} from "../../../redux/actions/AdministratorActions";
-import { TextField } from "./InputField";
 import {
   extendStudentTime,
   getOneBioData,
   getResults,
 } from "../../../api/AdministratorCalls";
+import {
+  getFaculty,
+  loadSingleBiodata,
+  loadSingleExam,
+  loadUpQuestions,
+  loadUpResults,
+  updateBiodata,
+  updateExam,
+} from "../../../redux/actions/AdministratorActions";
+import Modal from "../../Modal";
 import Preloader from "../../Preloader";
+import "./Assessment.scss";
+import AddStudentModalWindow, {
+  AddMassScoreModal,
+} from "./AssessmentModalWindow";
+import { StudentInfo, StudentList } from "./AssessmentStudentList";
+import { TextField } from "./InputField";
+import PreviewQuestions from "./PreviewQuestions";
 
 const queryParser = (data: string) => {
   data = data.replace("?", "");
@@ -48,7 +40,6 @@ const queryParser = (data: string) => {
 };
 const Assessment = (props: any) => {
   const {
-    results,
     faculty,
     match,
     loadSingleExam,
@@ -110,7 +101,7 @@ const Assessment = (props: any) => {
     refreshingXlsx: false,
   });
 
-  const [editScore, setEditScore] = useState(false);
+  // const [editScore, setEditScore] = useState(false);
   const { criticalFail: critical } = triedLoading;
 
   useEffect(() => {
